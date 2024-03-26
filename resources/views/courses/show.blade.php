@@ -10,6 +10,12 @@
 <body>
     <h2>View SHOW</h2>
 
+    @if(session('success'))
+    <p style="color: green">
+        {{session('success')}}
+    </p>
+    @endif
+
     <a href="{{route('course.index')}}">Listar</a>
     <a href="{{route('course.create')}}">Cadastrar</a>
     <a href="{{route('course.edit')}}">Editar</a>
