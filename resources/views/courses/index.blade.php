@@ -9,10 +9,23 @@
 
 <body>
     <h2>View INDEX</h2>
-    <a href="{{route('course.show')}}">Visualizar</a>
+
+    {{-- <a href="{{route('course.show')}}">Visualizar</a> --}}
     <a href="{{route('course.create')}}">Cadastrar</a>
-    <a href="{{route('course.edit')}}">Editar</a>
+    <a href="{{route('course.edit')}}">Editar</a><br><br>
     <!-- <a href="{{route('course.destroy')}}">Apagar</a> -->
+
+    @forelse ($courses as $course)
+    ID: {{ $course->id }}<br>
+    Nome: {{$course->name}}<br>
+
+    <a href="{{route('course.show',['course'=>$course->id])}}">Visualizar</a><br>
+
+    <hr>
+    @empty
+    <span style="color: red">Nenhuma conta encontrada!</span>
+
+    @endforelse
 </body>
 
 </html>

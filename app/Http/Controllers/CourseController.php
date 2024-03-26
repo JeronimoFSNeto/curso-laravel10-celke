@@ -12,7 +12,8 @@ class CourseController extends Controller
         //dd('listar os cursos');
         // Código para listar os cursos
         // Carregar a VIEW
-        return view('courses.index');
+        $courses = Course::all();
+        return view('courses.index')->with("courses",$courses);
 
     }
 
@@ -36,8 +37,8 @@ class CourseController extends Controller
 
         // Não possui VIEW, pois depois de cadastrar ele deve redirecionar para outra pagina
         // Cadastrar no banco de dados na tabela cursos os valores de todos os campos
-        Course::create($request->all());
-        return redirect()->route('course.show')->with('success', 'Curso cadastrado com sucesso!');
+        $course = Course::create($request->all());
+        return redirect()->route('course.show', ['course' => $course->id ])->with('success', 'Curso cadastrado com sucesso!');
     }
 
     // EDIT
